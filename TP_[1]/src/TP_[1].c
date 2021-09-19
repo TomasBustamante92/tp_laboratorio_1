@@ -4,210 +4,110 @@
 	Alumno: Tomas Sanchez de Bustamante
 	Div: D
 	TP: 1
+	OS: Linux
 
  ============================================================================
  */
 
 #include <stdio_ext.h>
 #include <stdlib.h>
-
-int sumar(int numero1, int numero2);
-int restar(int numero1, int numero2);
-int multiplicar(int numero1, int numero2);
-float dividir(int numero1, int numero2);
-int factorial (int numero);
+#include "ecuaciones.h"
+#include "menu.h"
 
 
 int main(void) {
 	setbuf(stdout,NULL);
 
 	int opcion;
-	char opcionLetra;
-	int numeroA;
-	int numeroB;
+	float numeroA;
+	float numeroB;
 	int flagA = 0;
 	int flagB = 0;
-	int flagSuma = 0;
-	int flagResta = 0;
-	int flagMultiplicar = 0;
-	int flagDividir = 0;
-	int flagFactorial = 0;
+	int opcionTres = 0;
+	int opcionCuatro = 0;
+	float suma;
+	float resta;
+	float multiplicacion;
+	float division;
+	long factorialA;
+	long factorialB;
+
 
 	do{
+		// ---- MENU ---- //
+		menuOpcionUno(flagA, numeroA);
+		menuOpcionDos(flagB, numeroB);
 
-		if(flagA == 0)
+		if(opcionTres == 0)
 		{
-			printf("1. Ingresar 1er operando (A=x)\n");
-		} else if (flagA == 1)
-		{
-			printf("1. Ingresar 1er operando (A=%d)\n",numeroA);
+			printf("3. Calcular todas las operaciones\n");
 		}
-		if(flagB == 0)
+		else
 		{
-			printf("2. Ingresar 2do operando (B=y)\n");
-		} else if (flagB == 1)
-		{
-			printf("2. Ingresar 2do operando (B=%d)\n",numeroB);
+			menuOpcionTres(numeroA, numeroB, flagA, flagB);
 		}
-		printf("3. Calcular todas las operaciones\n");
-		printf("4. Informar resultados\n");
+
+		if(opcionCuatro == 0)
+		{
+			printf("4. Informar resultados\n");
+		}
+		else
+		{
+			if(opcionTres == 1)
+			{
+				menuOpcionCuatro(numeroA, numeroB, flagA, flagB, suma, resta, multiplicacion, division, factorialA, factorialB);
+			}
+			else
+			{
+				printf("!!!ERROR: falta calcular las operaciones\n");
+			}
+		}
 		printf("5. Salir\n");
 
-		printf("\nOpcion 1-5: ");
-		__fpurge(stdin);
-		scanf("%d",&opcion);
+		opcion = pedirNumeroEntero("\nOpcion 1-5: ", "Error. Opcion 1-5:", 1, 5);
+
+		printf("\n--------------\n");
 
 		switch(opcion)
 		{
 		case 1:
-			printf("Numero A: ");
-			__fpurge(stdin);
-			scanf("%d",&numeroA);
+			numeroA = pedirNumeroFloat("Numero A: ", "Error. Numero A:", -10000, 10000);
 			flagA = 1;
+			opcionTres = 0;
+			opcionCuatro = 0;
+			limpiarConsola();
 			break;
 		case 2:
-			printf("Numero B: ");
-			__fpurge(stdin);
-			scanf("%d",&numeroB);
+			numeroB = pedirNumeroFloat("Numero B: ", "Error. Numero B:", -10000, 10000);
 			flagB = 1;
+			opcionTres = 0;
+			opcionCuatro = 0;
+			limpiarConsola();
 			break;
 		case 3:
-			if(flagA == 1 && flagB == 1)
-			{
-				printf("3. Calcular todas las operaciones:\n");
-				printf("\ta) Calcular la suma\n");
-				printf("\tb) Calcular la resta\n");
-				printf("\tc) Calcular la division\n");
-				printf("\td) Calcular la multiplicacion\n");
-				printf("\te) Calcular el factorial\n");
-			}
+			suma = sumar(numeroA, numeroB);
+			resta = restar(numeroA, numeroB);
+			multiplicacion = multiplicar(numeroA, numeroB);
+			division = dividir(numeroA, numeroB);
+			factorialA = factorial(numeroA);
+			factorialB = factorial(numeroB);
 
-			printf("\nOpcion a-e: ");
-			__fpurge(stdin);
-			scanf("%c",&opcionLetra);
-
-			// AGREGAR LOS FLAGS PARA CADA CUENTAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA!!!!!!!!!
-
+			opcionTres = 1;
+			limpiarConsola();
 			break;
 		case 4:
-			if(flagA == 1 && flagB == 1)
-			{
-				printf("4. Informar resultados\n");
-				if(flagSuma == 0)
-				{
-					printf("\ta) El resultado de %d+%d es: ?\n",numeroA,numeroB);
-				} else if (flagSuma == 1)
-				{
-					// AGREGAR FUNCION SUMAAAA!!!!!
-				}
-				if(flagResta == 0)
-				{
-					printf("\tb) El resultado de %d-%d es: ?\n",numeroA,numeroB);
-				} else if (flagResta == 1)
-				{
-					// AGREGAR FUNCION RESTAAAR!!!!!
-				}
-				if(flagDividir == 0)
-				{
-					printf("\tc) El resultado de %d/%d es: ? o No es posible dividir por cero\n",numeroA,numeroB);
-				} else if (flagDividir == 1)
-				{
-					// AGREGAR FUNCION DIVIDIR!!!!!
-				}
-				if(flagMultiplicar == 0)
-				{
-					printf("\td) El resultado de %d*%d es: ?\n",numeroA,numeroB);
-				} else if (flagMultiplicar == 1)
-				{
-					// AGREGAR FUNCION MULTIPLICAR!!!!!
-				}
-				if(flagFactorial == 0)
-				{
-					printf("\te) El factorial de %d es: r1 y el factorial de %d es: r2\n\n",numeroA,numeroB);
-				} else if (flagFactorial == 1)
-				{
-					// AGREGAR FUNCION FACTORIAL!!!!!
-				}
-			} else {
-				printf("ERROR. no se ingreso alguno de los numeros.\n");
-			}
+			opcionCuatro = 1;
+			limpiarConsola();
 			break;
 		case 5:
-			printf("\n\tAdios!");
+			printf("\nAdios!");
 			break;
-
-		} // fin switch
+		}
 
 	} while (opcion != 5);
 
-	// ----- FIN DEL WHILE ----- //
-
-
 	return EXIT_SUCCESS;
 } // fin main
-
-
-
-int sumar(int numero1, int numero2)
-{
-	int resultado;
-
-	resultado = numero1 + numero2;
-
-	return resultado;
-} // fin sumar
-
-
-
-int restar(int numero1, int numero2)
-{
-	int resultado;
-
-	resultado = numero1 - numero2;
-
-	return resultado;
-} // fin restar
-
-
-
-int multiplicar(int numero1, int numero2)
-{
-	int resultado;
-
-	resultado = numero1 / numero2;
-
-	return resultado;
-} // fin multiplicar
-
-
-
-float dividir(int numero1, int numero2)
-{
-	float resultado;
-
-	resultado = (float)numero1 / numero2;
-
-	return resultado;
-} // fin dividir
-
-int factorial (int numero)
-{
-	int resultado;
-
-	resultado = numero;
-
-	for(int i=1 ; i<numero ; i++)
-	{
-		resultado = resultado * i;
-	}
-
-	return resultado;
-} // fin factorial
-
-
-
-
-
 
 
 
