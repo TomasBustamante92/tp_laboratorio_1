@@ -14,7 +14,7 @@
 ///
 /// @param numero1
 /// @param numero2
-/// @return
+/// @return devuelve la suma de ambos numeros
 float sumar(float numero1, float numero2)
 {
 	float resultado;
@@ -31,7 +31,7 @@ float sumar(float numero1, float numero2)
 ///
 /// @param numero1
 /// @param numero2
-/// @return
+/// @return devuelve la resta de ambos numeros
 float restar(float numero1, float numero2)
 {
 	float resultado;
@@ -47,7 +47,7 @@ float restar(float numero1, float numero2)
 ///
 /// @param numero1
 /// @param numero2
-/// @return
+/// @return devuelve la multiplicacion de ambos numeros
 float multiplicar(float numero1, float numero2)
 {
 	float resultado;
@@ -63,7 +63,7 @@ float multiplicar(float numero1, float numero2)
 ///
 /// @param numero1
 /// @param numero2
-/// @return
+/// @return devuelve la division de ambos numeros
 float dividir(float numero1, float numero2)
 {
 	float resultado;
@@ -92,10 +92,10 @@ long factorial(int numero)
 } // fin factorial
 
 /// @fn int evaluarFactorial(float)
-/// @brief devuelve un 1 si se puede calcular el factorial
+/// @brief evalua si se puede calcular el factorial
 ///
 /// @param numero
-/// @return
+/// @return devuelve un 1 si se puede calcular el factorial
 int evaluarFactorial(float numero)
 {
 	int retorno = 0;

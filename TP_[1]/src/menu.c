@@ -13,11 +13,11 @@
 /// @fn int pedirNumeroEntero(char*, char*, int, int)
 /// @brief Pide un numero entero, evalua si el minimo y maximo sin correctos y en caso que no lo sea, mandar error
 ///
-/// @param mensaje
-/// @param mensajeError
-/// @param min
-/// @param max
-/// @return
+/// @param mensaje Pide un mensaje para imprimir
+/// @param mensajeError Pide un mensaje de error para imprimir
+/// @param min numero minimo para ingresar
+/// @param max numero maximo para ingresar
+/// @return devuelve el numero que se le pidio al usuario
 int pedirNumeroEntero(char* mensaje, char* mensajeError, int min, int max)
 {
 	int numeroIngresado;
@@ -39,11 +39,11 @@ int pedirNumeroEntero(char* mensaje, char* mensajeError, int min, int max)
 /// @fn float pedirNumeroFloat(char*, char*, int, int)
 /// @brief Pide un numero entero, evalua si el minimo y maximo sin correctos y en caso que no lo sea, mandar error
 ///
-/// @param mensaje
-/// @param mensajeError
-/// @param min
-/// @param max
-/// @return
+/// @param mensaje Pide un mensaje para imprimir
+/// @param mensajeError Pide un mensaje de error para imprimir
+/// @param min numero minimo para ingresar
+/// @param max numero maximo para ingresar
+/// @return devuelve el numero flotante que se le pidio al usuario
 float pedirNumeroFloat(char* mensaje, char* mensajeError, int min, int max)
 {
 	float numeroIngresado;
@@ -77,8 +77,8 @@ void limpiarConsola(void)
 /// @fn void menuOpcionUno(int, float)
 /// @brief Muestra la opcion 1 del menu con una 'x' si no ingreso el numero
 ///
-/// @param flagA
-/// @param numeroA
+/// @param flagA si esta en 0 imprime A=x, si esta en 1 devuelve A= numero ingresado
+/// @param numeroA numero ingresado
 void menuOpcionUno(int flagA, float numeroA)
 {
 	int numeroInt = (int)numeroA;
@@ -104,8 +104,8 @@ void menuOpcionUno(int flagA, float numeroA)
 /// @fn void menuOpcionDos(int, float)
 /// @brief Muestra la opcion 2 del menu con una 'x' si no ingreso el numero
 ///
-/// @param flagB
-/// @param numeroB
+/// @param flagB si esta en 0 imprime B=x, si esta en 1 devuelve B= numero ingresado
+/// @param numeroB numero ingresado
 void menuOpcionDos(int flagB, float numeroB)
 {
 	int numeroInt = (int)numeroB;
@@ -129,10 +129,10 @@ void menuOpcionDos(int flagB, float numeroB)
 /// @fn void menuOpcionTres(float, float, int, int)
 /// @brief Muestra la opcion 3 del menu evaluando que calculos se pueden hacer
 ///
-/// @param numeroA
-/// @param numeroB
-/// @param flagA
-/// @param flagB
+/// @param numeroA numero ingresado A
+/// @param numeroB numero ingresado B
+/// @param flagA en caso de que se haya ingresado el numero A devuelve 1
+/// @param flagB en caso de que se haya ingresado el numero B devuelve 1
 void menuOpcionTres(float numeroA, float numeroB, int flagA, int flagB)
 {
 	int numeroIntA = (int)numeroA;
@@ -234,16 +234,16 @@ void menuOpcionTres(float numeroA, float numeroB, int flagA, int flagB)
 /// @fn void menuOpcionCuatro(float, float, int, int, float, float, float, float, long, long)
 /// @brief Muestra la opcion 4 del menu con las respuestas de las ecuaciones
 ///
-/// @param numeroA
-/// @param numeroB
-/// @param flagA
-/// @param flagB
-/// @param suma
-/// @param resta
-/// @param multiplicacion
-/// @param division
-/// @param factorialA
-/// @param factorialB
+/// @param numeroA numero ingresado A
+/// @param numeroB numero ingresado B
+/// @param flagA flagA en caso de que se haya ingresado el numero A devuelve 1
+/// @param flagB flagB en caso de que se haya ingresado el numero B devuelve 1
+/// @param suma pasa el valor de la suma
+/// @param resta pasa el valor de la resta
+/// @param multiplicacion pasa el valor de la multiplicacion
+/// @param division pasa el valor de la division
+/// @param factorialA pasa el valor del factorial A
+/// @param factorialB pasa el valor del factorial B
 void menuOpcionCuatro(float numeroA, float numeroB, int flagA, int flagB, float suma, float resta, float multiplicacion, float division, long factorialA, long factorialB)
 {
 	int sumaInt = (int)suma;
