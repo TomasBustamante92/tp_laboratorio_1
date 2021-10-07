@@ -8,6 +8,12 @@
 
 #include "inputs.h"
 
+/// @fn int myGets(char*, int)
+/// @brief ask for a string to the user checking that it can not overflow
+///
+/// @param cadena
+/// @param longitud length of the array
+/// @return returns 0
 static int myGets(char* string, int len)
 {
 	__fpurge(stdin);
@@ -17,7 +23,11 @@ static int myGets(char* string, int len)
 	return 0;
 }
 
-
+/// @fn int esNumerica(char*)
+/// @brief checks if the strings is a number
+///
+/// @param cadena
+/// @return returns [1] if the string can become a float, otherwise returns [0].
 static int esNumerica(char* string)
 {
     int comeback = 1;
@@ -42,10 +52,10 @@ static int esNumerica(char* string)
 
 
 /// @fn int getInt(int*)
-/// @brief ask the user for a stirng, checks if its a number, if it is, it changes it to int.
+/// @brief ask the user for a string, checks if its a number, if it is, it changes it to int.
 ///
 /// @param pResultado it returns a number if enter correctly
-/// @return it returns [0]in case user has enter the number correctly, otherwise it returns [-1]
+/// @return it returns [0] in case user has enter the number correctly, otherwise it returns [-1]
 static int getInt(int* pResult)
 {
     int comeback = -1;
@@ -61,31 +71,12 @@ static int getInt(int* pResult)
 }
 
 
-int input_requestNumberInt(int* pResult, char* message, char* error, int min, int max)
-{
-    int comeback = -1;
-    int buffer;
-    int bufferAnswer;
 
-    if(pResult != NULL && message != NULL && error != NULL && min <= max)
-    {
-        printf("%s",message);
-        bufferAnswer = getInt(&buffer);
-
-		while(bufferAnswer == -1 || buffer < min || buffer > max)
-		{
-			printf("%s", error);
-			bufferAnswer = getInt(&buffer);
-		}
-
-		*pResult = buffer;
-		comeback = 0;
-    }
-
-    return comeback;
-}
-
-
+/// @fn int esFloat(char*)
+/// @brief checks if the strings is a float
+///
+/// @param cadena
+/// @return returns [1] if the string can become a float, otherwise returns [0].
 static int esFloat(char* string)
 {
     int comeback = 1;
@@ -122,7 +113,11 @@ static int esFloat(char* string)
     return comeback;
 }
 
-
+/// @fn int getFloat(float*)
+/// @brief ask the user for a string, checks if its a float, if it is, it changes it to float.
+///
+/// @param pResultado it returns a number if enter correctly
+/// @return it returns [0] in case user has enter the number correctly, otherwise it returns [-1]
 static int getFloat(float* pResult)
 {
     int comeback = -1;
@@ -132,6 +127,30 @@ static int getFloat(float* pResult)
     {
         *pResult = atof(buffer);
         comeback = 0;
+    }
+
+    return comeback;
+}
+
+int input_requestNumberInt(int* pResult, char* message, char* error, int min, int max)
+{
+    int comeback = -1;
+    int buffer;
+    int bufferAnswer;
+
+    if(pResult != NULL && message != NULL && error != NULL && min <= max)
+    {
+        printf("%s",message);
+        bufferAnswer = getInt(&buffer);
+
+		while(bufferAnswer == -1 || buffer < min || buffer > max)
+		{
+			printf("%s", error);
+			bufferAnswer = getInt(&buffer);
+		}
+
+		*pResult = buffer;
+		comeback = 0;
     }
 
     return comeback;

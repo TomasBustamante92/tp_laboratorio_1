@@ -17,34 +17,6 @@
 
 
 
-/// @fn int getFloat(float*)
-/// @brief pide al usuario un string, corrobora si es un numero flotante, y si lo es lo convierte en float
-///
-/// @param pResultado se devuelve un numero entero en caso de que el usuario haya ingresado un numero correctamente
-/// @return devuelve [0] si se ingreso un numero flotante, devuelve [-1] en caso de que se ingrese otra cosa
-//static int getFloat(float* pResultado);
-
-/// @fn int esNumerica(char*)
-/// @brief corrobora que el string solo contenga numeros enteros
-///
-/// @param cadena
-/// @return devuelve [1] si el string se puede convertir a int y devuelve [0] si no
-//static int esNumerica(char* cadena);
-
-/// @fn int esFloat(char*)
-/// @brief corrobora que el string contenga numeros flotantes
-///
-/// @param cadena
-/// @return devuelve [1] si el string se puede convertir a float y devuelve [0] si no
-//static int esFloat(char* cadena);
-
-/// @fn int myGets(char*, int)
-/// @brief pide un string al usuario corroborando que no se pueda desbordar
-///
-/// @param cadena array donde se va a guardar el string
-/// @param longitud tamanio del array
-/// @return devuelve 0
-
 /// @fn int input_getNumero(int*, char*, char*, int, int)
 /// @brief imprime mensaje pidiendo un numero entero al usuario, en caso de que se respete el minimo y el maximo, se devolvera un numero int,
 /// 		 caso contrario se imprime un mensaje de error con su reintento
