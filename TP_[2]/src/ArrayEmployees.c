@@ -81,10 +81,24 @@ int auxAddEmployee(Employee auxEmployee, Employee* list, int len, int lastId)
 	int comeback = -1;
 
 	auxEmployee.id = lastId +1;
-	input_requestString(auxEmployee.name, "\nIngrese nombre del empleado: ", "\nERROR. Ingrese nombre del empleado: ", 51);
-	input_requestString(auxEmployee.lastName, "Ingrese apellido del empleado: ", "ERROR. Ingrese apellido del empleado: ", 51);
-	input_requestNumberFloat(&auxEmployee.salary, "Ingrese salario: ", "ERROR. Ingrese salario: ", 0, 1000000);
-	input_requestNumberInt(&auxEmployee.sector, "Ingrese sector: ", "ERROR. Ingrese sector: (1-100)", 1, 100);
+	if(input_requestStringOnlyLetters(auxEmployee.name, "\nIngrese nombre del empleado: ", "\nERROR. Ingrese nombre del empleado: ", 51) == -1)
+	{
+		printf("ERROR FATAL!");
+	}
+	if(input_requestStringOnlyLetters(auxEmployee.lastName, "Ingrese apellido del empleado: ", "ERROR. Ingrese apellido del empleado: ", 51) == -1)
+	{
+		printf("ERROR FATAL!");
+	}
+
+	if(input_requestNumberFloat(&auxEmployee.salary, "Ingrese salario: ", "ERROR. Ingrese salario: ", 0, 1000000) == -1)
+	{
+		printf("ERROR FATAL!");
+	}
+
+	if(input_requestNumberInt(&auxEmployee.sector, "Ingrese sector: ", "ERROR. Ingrese sector: (1-100)", 1, 100) == -1)
+	{
+		printf("ERROR FATAL!");
+	}
 
 	printTopMenu();
 	printEmployee(auxEmployee);
@@ -151,7 +165,11 @@ int modifyEmployee(Employee* list, int len)
 	Employee auxEmployee;
 
 	printEmployees(list, len);
-	input_requestNumberInt(&auxId, "Ingrese ID para modificar: ", "ERROR. Ingrese ID para modificar [1000-2000]: ", 1000, 2000);
+	if(input_requestNumberInt(&auxId, "Ingrese ID para modificar: ", "ERROR. Ingrese ID para modificar [1000-2000]: ", 1000, 2000) == -1)
+	{
+		printf("ERROR FATAL!");
+	}
+
 	index = searchEmployeeById(list, len, auxId);
 
 	if(index != -1)
@@ -163,7 +181,7 @@ int modifyEmployee(Employee* list, int len)
 		do
 		{
 			auxEmployee = list[index];
-			input_requestNumberInt(&option,
+			if(input_requestNumberInt(&option,
 									"-------------------------------------\n"
 									"1. Modificar NOMBRE\n"
 									"2. Modificar APELLIDO\n"
@@ -179,14 +197,20 @@ int modifyEmployee(Employee* list, int len)
 									"4. Modificar SECTOR\n"
 									"5. ATRAS\n"
 									"-------------------------------------\n"
-									"ERROR. Ingrese opcion: ", 1, 5);
+									"ERROR. Ingrese opcion: ", 1, 5) == -1)
+			{
+				printf("ERROR FATAL!");
+			}
 
 			switch(option)
 			{
 				case 1:
 					printTopMenu();
 					printEmployee(list[index]);
-					input_requestString(auxEmployee.name, "\nIngrese NUEVO nombre de empleado: ", "\nERROR. Ingrese NUEVO nombre de empleado: ", 51);
+					if(input_requestString(auxEmployee.name, "\nIngrese NUEVO nombre de empleado: ", "\nERROR. Ingrese NUEVO nombre de empleado: ", 51) == -1)
+					{
+						printf("ERROR FATAL!");
+					}
 
 					cleanScreen();
 					printTopMenu();
@@ -209,7 +233,10 @@ int modifyEmployee(Employee* list, int len)
 				case 2:
 					printTopMenu();
 					printEmployee(list[index]);
-					input_requestString(auxEmployee.lastName, "\nIngrese NUEVO apellido de empleado: ", "\nERROR. Ingrese NUEVO apellido de empleado: ", 51);
+					if(input_requestString(auxEmployee.lastName, "\nIngrese NUEVO apellido de empleado: ", "\nERROR. Ingrese NUEVO apellido de empleado: ", 51) == -1)
+					{
+						printf("ERROR FATAL!");
+					}
 
 					cleanScreen();
 					printTopMenu();
@@ -232,7 +259,10 @@ int modifyEmployee(Employee* list, int len)
 				case 3:
 					printTopMenu();
 					printEmployee(list[index]);
-					input_requestNumberFloat(&auxEmployee.salary, "\nIngrese NUEVO salario: ", "\nERROR. Ingrese NUEVO salario: ", 0, 1000000);
+					if(input_requestNumberFloat(&auxEmployee.salary, "\nIngrese NUEVO salario: ", "\nERROR. Ingrese NUEVO salario: ", 0, 1000000) == -1)
+					{
+						printf("ERROR FATAL!");
+					}
 
 					cleanScreen();
 					printTopMenu();
@@ -255,7 +285,10 @@ int modifyEmployee(Employee* list, int len)
 				case 4:
 					printTopMenu();
 					printEmployee(list[index]);
-					input_requestNumberInt(&auxEmployee.sector, "\nIngrese NUEVO sector: ", "\nERROR. Ingrese NUEVO sector: ", 1, 100);
+					if(input_requestNumberInt(&auxEmployee.sector, "\nIngrese NUEVO sector: ", "\nERROR. Ingrese NUEVO sector: ", 1, 100) == -1)
+					{
+						printf("ERROR FATAL!");
+					}
 
 					cleanScreen();
 					printTopMenu();
@@ -445,7 +478,10 @@ int verifyConfirmation(char* message, char* error)
 	int comeback = -1;
 	char response[5];
 
-	input_requestString(response, message, error, 5);
+	if(input_requestString(response, message, error, 5) == -1)
+	{
+		printf("ERROR FATAL!");
+	}
 
 	if(strcmp(response, "si") == 0)
 	{
@@ -532,7 +568,7 @@ int informEmployees(Employee* list, int len)
 	int option;
 
 	do{
-		input_requestNumberInt(&option, "-------------------------------------\n"
+		if(input_requestNumberInt(&option, "-------------------------------------\n"
 										"1. Ordenar empleados \n"
 										"2. Salarios\n"
 										"3. ATRAS\n"
@@ -543,7 +579,10 @@ int informEmployees(Employee* list, int len)
 										"2. Salarios\n"
 										"3. ATRAS\n"
 										"-------------------------------------\n"
-										"ERROR. Ingrese opcion: ", 1, 3);
+										"ERROR. Ingrese opcion: ", 1, 3) == -1)
+		{
+			printf("ERROR FATAL!");
+		}
 
 		switch(option)
 		{
@@ -574,7 +613,7 @@ int showEmployees(Employee* list, int len)
 
 
 	do{
-		input_requestNumberInt(&option, "-------------------------------------\n"
+		if(input_requestNumberInt(&option, "-------------------------------------\n"
 										"1. Orden ascendente\n"
 										"2. Orden descendente\n"
 										"3. ATRAS\n"
@@ -585,7 +624,10 @@ int showEmployees(Employee* list, int len)
 										"2. Orden descendente\n"
 										"3. ATRAS\n"
 										"-------------------------------------\n"
-										"ERROR. Ingrese opcion: ", 1, 3);
+										"ERROR. Ingrese opcion: ", 1, 3) == -1)
+		{
+			printf("ERROR FATAL!");
+		}
 
 		switch(option)
 		{

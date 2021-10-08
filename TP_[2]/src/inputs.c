@@ -209,3 +209,70 @@ int input_requestString(char* string, char* message, char* errorMessage, int max
 
 	return comeback;
 }
+
+int input_requestStringOnlyLetters(char* string, char* message, char* errorMessage, int max)
+{
+	int comeback = -1;
+	char buffer[256];
+	int len;
+	int errorString;
+
+	if(string != NULL && message != NULL && errorMessage != NULL && max > 0)
+	{
+		printf("%s", message);
+		__fpurge(stdin);
+		scanf("%[^\n]", buffer);
+		len = strlen(buffer);
+		errorString = validateLetters(buffer, len);
+
+		while(len > max || errorString == -1)
+		{
+			printf("%s", errorMessage);
+			__fpurge(stdin);
+			scanf("%[^\n]", buffer);
+			len = strlen(buffer);
+			errorString = validateLetters(buffer, len);
+		}
+
+
+		strcpy(string, buffer);
+		comeback = 0;
+	}
+
+	return comeback;
+}
+
+
+int validateLetters(char* string, int len)
+{
+	int comeback = 0;
+	int i;
+
+	if(string != NULL)
+	{
+		for(i=0 ; i<len ; i++)
+		{
+
+			if(string[i] < 'A' || (string[i] > 'Z' && string[i] < 'a') || string[i] > 'z')
+			{
+				comeback = -1;
+
+				if(i != 0 && string[i] == ' ')
+				{
+					comeback = 0;
+				}
+			}
+		}
+	}
+
+	return comeback;
+}
+
+
+
+
+
+
+
+
+
