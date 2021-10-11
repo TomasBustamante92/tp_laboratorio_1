@@ -21,10 +21,9 @@ int main(void) {
 	Employee auxEmployee;
 	int option;
 	int id;
-	int lastId = 1002;
+	int lastId = 1000;
 
 	initEmployees(employees, ELEMENTS);
-	producto_hardCodear(employees, ELEMENTS); // BORRARRRR
 
 	do{
 		input_requestNumberInt(&option,	"-------------------------------------\n"
@@ -106,8 +105,6 @@ int main(void) {
 		}
 
 	}while(option != 5);
-
-
 
 
 

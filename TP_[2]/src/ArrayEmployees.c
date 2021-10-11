@@ -9,15 +9,6 @@
 #include "ArrayEmployees.h"
 
 
-
-/// @fn int initEmployees(Employee*, int)
-/// @brief 	To indicate that all position in the array are empty,
-/// 		this function put the flag(isEmpty) in TRUE in all
-/// 		position of the array
-///
-/// @param list Employee* Pointer to array of employees
-/// @param len int Array length
-/// @return int Return (-1) if Error [Invalid length or NULL pointer]  -  (0) if Ok
 int initEmployees(Employee* list, int len)
 {
 	int comeback = -1;
@@ -31,24 +22,10 @@ int initEmployees(Employee* list, int len)
 	}
 
 	return comeback;
-} // r = initEmployees(arrayEmployees, ELEMENTS);
+}
 
 
 
-
-/// @fn int addEmployee(Employee*, int, int, char[], char[], float, int)
-/// @brief 	add in an existing list of employees the values received as parameters
-/// 		in the first empty position
-///
-/// @param list Employee*
-/// @param len int
-/// @param id int
-/// @param name[] char
-/// @param lastName[] char
-/// @param salary float
-/// @param sector int
-/// @return int Return(-1) if Error [Invalid length or NULL pointer or without
-/// 		free space]  -  (0) if Ok
 int addEmployee(Employee* list, int len, int id, char name[], char lastName[],
 		float salary, int sector)
 {
@@ -71,9 +48,7 @@ int addEmployee(Employee* list, int len, int id, char name[], char lastName[],
 	}
 
 	return comeback;
-} // r = addEmployee(arrayEmployees, ELEMENTS, id, name, lastName, salary, sector);
-
-
+}
 
 
 int auxAddEmployee(Employee auxEmployee, Employee* list, int len, int lastId)
@@ -128,15 +103,6 @@ int auxAddEmployee(Employee auxEmployee, Employee* list, int len, int lastId)
 
 
 
-
-/// @fn int findEmployeeById(sEmployee*, int, int)
-/// @brief 	find an Employee by Id in returns the index position in array.
-///
-/// @param list sEmployee*
-/// @param len int
-/// @param id int
-/// @return Return employee index position or (-1) if [Invalid length or NULL
-/// 		pointer or employee not found]
 int findEmployeeById(Employee* list, int len, int id)
 {
 	int i;
@@ -152,7 +118,7 @@ int findEmployeeById(Employee* list, int len, int id)
 	}
 
 	return index;
-} // int index = findEmployeeById(arrayEmployees, ELEMENTS, 9);
+}
 
 
 
@@ -324,14 +290,7 @@ int modifyEmployee(Employee* list, int len)
 }
 
 
-/// @fn int removeEmployee(sEmployee*, int, int)
-/// @brief  Remove a Employee by Id (put isEmpty Flag in 1)
-///
-/// @param list sEmployee*
-/// @param len int
-/// @param id int
-/// @return int Return (-1) if Error [Invalid length or NULL pointer or id can't
-/// 		find an employee]  -  (0) if Ok
+
 int removeEmployee(Employee* list, int len, int id)
 {
 	int index;
@@ -366,18 +325,10 @@ int removeEmployee(Employee* list, int len, int id)
 
 
 	return comeback;
-} // r= removeEmployee(arrayEmployees, ELEMENTS, 20);
+}
 
 
 
-/// @fn int sortEmployees(sEmployee*, int, int)
-/// @brief 	Sort the elements in the array of employees, the argument order
-/// 		indicate UP or DOWN order
-///
-/// @param list	 sEmployee*
-/// @param len int
-/// @param order int [1] indicate UP  -  [0] indicate DOWN
-/// @return int Return (-1) if Error [Invalid length or NULL pointer]  -  (0) if Ok
 int sortEmployees(Employee* list, int len, int order)
 {
 	int i;
@@ -432,16 +383,10 @@ int sortEmployees(Employee* list, int len, int order)
 		}while(flagSwap);
 	}
 	return 0;
-} // r = sortEmployeeByName(arrayEmployees, ELEMENTS, 1);
+}
 
 
 
-/// @fn int printEmployees(sEmployee*, int)
-/// @brief print the content of employees array
-///
-/// @param list sEmployee*
-/// @param length int
-/// @return int
 int printEmployees(Employee* list, int length)
 {
 	int comeback = -1;
@@ -461,7 +406,7 @@ int printEmployees(Employee* list, int length)
 	printf(	"\n");
 
 	return comeback;
-} // r = printEmployees(arrayEmployees, ELEMENTS);  // SI DEVUELVE -1 HACER UN PRINT Q DIGA Q NO HAY NADIE
+}
 
 
 
@@ -507,7 +452,7 @@ int noEmployeesOnSystem(Employee* list, int len)
 	}
 
 	return noEmployees;
-} // int index = findEmployeeById(arrayEmployees, ELEMENTS, 9);
+}
 
 
 
@@ -530,25 +475,6 @@ int searchEmployeeById(Employee* list, int len, int id)
 }
 
 
-void producto_hardCodear(Employee productos[], int tam)
-{
-	int i;
-	int ids[] = {1000, 1001, 1002};
-	char descripciones[][51] = {"IPhone 12", "IPhone 13", "IPad Pro"};
-	char apellido[][51] = {"jorge", "jamon", "alberto"};
-	int nacionalidades[] = {2, 5, 7};
-	int tipos[] = {3, 7, 4};
-
-	for(i=0; i<3; i++)
-	{
-		productos[i].id = ids[i];
-		strcpy(productos[i].name, descripciones[i]);
-		strcpy(productos[i].lastName, apellido[i]);
-		productos[i].salary = nacionalidades[i];
-		productos[i].sector = tipos[i];
-		productos[i].isEmpty = FALSE;
-	}
-}
 
 void printTopMenu(void)
 {
@@ -661,12 +587,16 @@ int salaries(Employee* list, int len)
 	float average = salariesAverage(list, len);
 	int quantity = quantityMoreThanAverage(list, len, average);
 
-	printf(	"\n----------------|-----------------|------------------------------------------"
-			"\n%-15s | %-15s | %-15s "
-			"\n----------------|-----------------|------------------------------------------", "Total", "Promedio", "Empleados que superan el salario promedio");
+	if(total != -1)
+	{
+		printf(	"\n----------------|-----------------|------------------------------------------"
+				"\n%-15s | %-15s | %-15s "
+				"\n----------------|-----------------|------------------------------------------", "Total", "Promedio", "Empleados que superan el salario promedio");
 
-	printf(	"\n%-15.2f | %-15.2f | %-15d "
-			"\n----------------|-----------------|------------------------------------------\n", total, average, quantity);
+		printf(	"\n%-15.2f | %-15.2f | %-15d "
+				"\n----------------|-----------------|------------------------------------------\n", total, average, quantity);
+		comeback = 0;
+	}
 
 
 	return comeback;
@@ -723,7 +653,6 @@ float salariesAverage(Employee* list, int len)
 int quantityMoreThanAverage(Employee* list, int len, float average)
 {
 	int quantity = 0;
-	int result = -1;
 	int i;
 
 	for(i=0; i<len ; i++)
@@ -734,12 +663,7 @@ int quantityMoreThanAverage(Employee* list, int len, float average)
 			}
 		}
 
-		if(quantity > 0)
-		{
-			result = quantity;
-		}
-
-	return result;
+	return quantity;
 }
 
 
