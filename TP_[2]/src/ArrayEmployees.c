@@ -17,7 +17,6 @@ int initEmployees(Employee* list, int len)
 	for(i=0 ; i<len ; i++)
 	{
 		list[i].isEmpty = TRUE;
-		list[i].id = 0;
 		comeback = 0;
 	}
 
