@@ -13,7 +13,13 @@
 #include "ArrayEmployees.h"
 #include "inputs.h"
 #include <string.h>
+#include <ctype.h>
 
+/// @fn void stringToLowerCase(char*)
+/// @brief Change all the characters to lower case
+///
+/// @param string string to verify
+void stringToLowerCase(char* string);
 
 /// @fn int validateLetters(char*, int)
 /// @brief checks that the string only contains letters

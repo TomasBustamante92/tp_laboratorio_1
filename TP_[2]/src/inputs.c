@@ -268,8 +268,15 @@ int validateLetters(char* string, int len)
 	return comeback;
 }
 
+void stringToLowerCase(char* string)
+{
+	int i;
 
-
+	for(i = 0; string[i]; i++)
+	{
+		string[i] = tolower(string[i]);
+	}
+}
 
 
 

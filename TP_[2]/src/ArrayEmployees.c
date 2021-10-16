@@ -427,6 +427,8 @@ int verifyConfirmation(char* message, char* error)
 		printf("ERROR FATAL!");
 	}
 
+	stringToLowerCase(response);
+
 	if(strcmp(response, "si") == 0)
 	{
 		comeback = 0;
