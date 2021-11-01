@@ -13,6 +13,7 @@
 #include <stdlib.h>
 #include "ecuaciones.h"
 #include "menu.h"
+#include "input.h"
 
 
 int main(void) {
@@ -64,40 +65,45 @@ int main(void) {
 		}
 		printf("5. Salir\n");
 
-		opcion = pedirNumeroEntero("\nOpcion 1-5: ", "Error. Opcion 1-5:", 1, 5);
+		input_getNumero(&opcion, "\nOpcion 1-5: ", "Error. Opcion 1-5:", 1, 5);
 
 		printf("\n--------------\n");
 
 		switch(opcion)
 		{
 		case 1:
-			numeroA = pedirNumeroFloat("Numero A: ", "Error. Numero A:", -10000, 10000);
+			input_getFloat(&numeroA, "Numero A: ", "Error. Numero A:", -10000, 10000);
 			flagA = 1;
 			opcionTres = 0;
 			opcionCuatro = 0;
-			limpiarConsola();
+			input_limpiarPantalla();
 			break;
 		case 2:
-			numeroB = pedirNumeroFloat("Numero B: ", "Error. Numero B:", -10000, 10000);
+			input_getFloat(&numeroB, "Numero B: ", "Error. Numero B:", -10000, 10000);
 			flagB = 1;
 			opcionTres = 0;
 			opcionCuatro = 0;
-			limpiarConsola();
+			input_limpiarPantalla();
 			break;
 		case 3:
 			suma = sumar(numeroA, numeroB);
 			resta = restar(numeroA, numeroB);
 			multiplicacion = multiplicar(numeroA, numeroB);
 			division = dividir(numeroA, numeroB);
-			factorialA = factorial(numeroA);
-			factorialB = factorial(numeroB);
-
+			if(evaluarFactorial(numeroA) == 1)
+			{
+				factorialA = factorial(numeroA);
+			}
+			if(evaluarFactorial(numeroB) == 1)
+			{
+				factorialB = factorial(numeroB);
+			}
 			opcionTres = 1;
-			limpiarConsola();
+			input_limpiarPantalla();
 			break;
 		case 4:
 			opcionCuatro = 1;
-			limpiarConsola();
+			input_limpiarPantalla();
 			break;
 		case 5:
 			printf("\nAdios!");

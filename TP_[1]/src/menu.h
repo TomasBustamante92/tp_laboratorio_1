@@ -10,10 +10,6 @@
 #include <stdio_ext.h>
 #include <stdlib.h>
 
-
-int pedirNumeroEntero(char* mensaje, char* mensajeError, int min, int max);
-float pedirNumeroFloat(char* mensaje, char* mensajeError, int min, int max);
-void limpiarConsola(void);
 void menuOpcionUno(int flagA, float numeroA);
 void menuOpcionDos(int flagB, float numeroB);
 void menuOpcionTres(float numeroA, float numeroB, int flagA, int flagB);

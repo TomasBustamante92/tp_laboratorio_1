@@ -10,69 +10,6 @@
 #include "ecuaciones.h"
 
 
-/// @fn int pedirNumeroEntero(char*, char*, int, int)
-/// @brief Pide un numero entero, evalua si el minimo y maximo sin correctos y en caso que no lo sea, mandar error
-///
-/// @param mensaje Pide un mensaje para imprimir
-/// @param mensajeError Pide un mensaje de error para imprimir
-/// @param min numero minimo para ingresar
-/// @param max numero maximo para ingresar
-/// @return devuelve el numero que se le pidio al usuario
-int pedirNumeroEntero(char* mensaje, char* mensajeError, int min, int max)
-{
-	int numeroIngresado;
-
-	printf("%s", mensaje);
-	__fpurge(stdin);					// CAMBIAR PARA WINDOWS
-	scanf("%d", &numeroIngresado);
-
-	while(numeroIngresado < min || numeroIngresado > max)
-	{
-		printf("%s", mensajeError);
-		__fpurge(stdin);				// CAMBIAR PARA WINDOWS
-		scanf("%d", &numeroIngresado);
-	}
-
-	return numeroIngresado;
-}
-
-/// @fn float pedirNumeroFloat(char*, char*, int, int)
-/// @brief Pide un numero entero, evalua si el minimo y maximo sin correctos y en caso que no lo sea, mandar error
-///
-/// @param mensaje Pide un mensaje para imprimir
-/// @param mensajeError Pide un mensaje de error para imprimir
-/// @param min numero minimo para ingresar
-/// @param max numero maximo para ingresar
-/// @return devuelve el numero flotante que se le pidio al usuario
-float pedirNumeroFloat(char* mensaje, char* mensajeError, int min, int max)
-{
-	float numeroIngresado;
-
-	printf("%s", mensaje);
-	__fpurge(stdin);					// CAMBIAR PARA WINDOWS
-	scanf("%f", &numeroIngresado);
-
-	while(numeroIngresado < min || numeroIngresado > max)
-	{
-		printf("%s", mensajeError);
-		__fpurge(stdin);				// CAMBIAR PARA WINDOWS
-		scanf("%f", &numeroIngresado);
-	}
-
-	return numeroIngresado;
-}
-
-
-/**
- * @fn void limpiarConsola(void)
- * @brief Limpia consola dejando espacios y una barra
- *
- */
-void limpiarConsola(void)
-{
-	printf("\n\n\n\n--------------\n\n\n\n");
-}
-
 
 /// @fn void menuOpcionUno(int, float)
 /// @brief Muestra la opcion 1 del menu con una 'x' si no ingreso el numero

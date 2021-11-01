@@ -101,7 +101,7 @@ int evaluarFactorial(float numero)
 	int retorno = 0;
 	int numeroInt = (int)numero;
 
-	if(numeroInt == numero && numeroInt > 1 && numeroInt < 21)
+	if(numeroInt == numero && numeroInt >= 0 && numeroInt < 21)
 	{
 		retorno = 1;
 	}
