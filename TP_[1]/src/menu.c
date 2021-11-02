@@ -121,7 +121,7 @@ void menuOpcionTres(float numeroA, float numeroB, int flagA, int flagB)
 
 			if(numeroIntB == 0)
 			{
-				printf("\tc) No se puede dividir por 0\n");
+				printf("\tc) !!!ERROR: No se puede dividir por 0\n");
 			}
 			else
 			{
@@ -146,7 +146,7 @@ void menuOpcionTres(float numeroA, float numeroB, int flagA, int flagB)
 
 			if(numeroIntB == 0)
 			{
-				printf("\tc) No se puede dividir por 0\n");
+				printf("\tc) !!!ERROR: No se puede dividir por 0\n");
 			}
 			else
 			{
@@ -244,7 +244,7 @@ void menuOpcionCuatro(float numeroA, float numeroB, int flagA, int flagB, float 
 		{
 			if((int)numeroB == 0)
 			{
-				printf("\tc) No se puede dividir por 0\n");
+				printf("\tc) !!!ERROR: No se puede dividir por 0\n");
 			}
 			else
 			{
