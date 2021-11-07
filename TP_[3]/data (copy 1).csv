@@ -1,4 +1,4 @@
-ID,Nombre,HorasTrabajadas,Sueldo
+id,nombre,horasTrabajadas,sueldo
 1,Lou,120,10000
 2,Ulrike,180,25000
 3,Brade,325,20000
@@ -993,7 +993,7 @@ ID,Nombre,HorasTrabajadas,Sueldo
 992,Trenna,90,10000
 993,Angelia,60,50000
 994,Raquela,180,12000
-995,Pop,5,5
+995,Maxi,325,18000
 996,Atalanta,90,37000
 997,De witt,88,12000
 998,Jaye,75,25000

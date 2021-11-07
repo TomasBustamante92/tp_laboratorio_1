@@ -1,3 +1,11 @@
+
+#include <stdio_ext.h>
+#include <stdlib.h>
+#include "Employee.h"
+#include "LinkedList.h"
+#include "parser.h"
+
+
 int controller_loadFromText(char* path , LinkedList* pArrayListEmployee);
 int controller_loadFromBinary(char* path , LinkedList* pArrayListEmployee);
 int controller_addEmployee(LinkedList* pArrayListEmployee);
