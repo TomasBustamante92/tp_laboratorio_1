@@ -356,7 +356,7 @@ int controller_saveAsText(char* path , LinkedList* pArrayListEmployee)
 int controller_saveAsBinary(char* path , LinkedList* pArrayListEmployee)
 {
 	int retorno = 0;
-	FILE* pFile = fopen(path, "w");
+	FILE* pFile = fopen(path, "wb");
 
 	if(path != NULL && pArrayListEmployee != NULL && pFile != NULL)
 	{
