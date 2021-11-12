@@ -38,7 +38,8 @@ int main()
     int cargoEmpleadosBinario = 0;
     int guardoEmpleadosTexto = 0;
     int guardoEmpleadosBinario = 0;
-
+    int modificacionListaEmpleados = 0;
+    int ultimoId = employee_getUltimoId();
 
     LinkedList* listaEmpleados = ll_newLinkedList();
 
@@ -121,12 +122,19 @@ int main()
             case 3:
             	if(cargoEmpleadosTexto == 1 || cargoEmpleadosBinario == 1)
             	{
-					if(!controller_addEmployee(listaEmpleados))
-					{
-						input_limpiarPantalla();
-						printf("Error al cargar el empleado! \n");
-						input_systemPause();
-					}
+            		if(ultimoId != -1)
+            		{
+						if(controller_addEmployee(listaEmpleados))
+						{
+							modificacionListaEmpleados = 1;
+						}
+            		}
+            		else
+            		{
+                    	input_limpiarPantalla();
+                    	printf("ERROR! No se pudo cargar el ID! \n");
+                    	input_systemPause();
+            		}
             	}
             	else
             	{
@@ -139,7 +147,11 @@ int main()
             case 4:
             	if(cargoEmpleadosTexto == 1 || cargoEmpleadosBinario == 1)
             	{
-					controller_editEmployee(listaEmpleados);
+					if(controller_editEmployee(listaEmpleados))
+					{
+						modificacionListaEmpleados = 1;
+					}
+
             	}
             	else
             	{
@@ -152,7 +164,10 @@ int main()
             case 5:
             	if(cargoEmpleadosTexto == 1 || cargoEmpleadosBinario == 1)
             	{
-					controller_removeEmployee(listaEmpleados);
+					if(controller_removeEmployee(listaEmpleados))
+					{
+						modificacionListaEmpleados = 1;
+					}
             	}
             	else
             	{
@@ -187,18 +202,7 @@ int main()
             case 7:
             	if(cargoEmpleadosTexto == 1 || cargoEmpleadosBinario == 1)
             	{
-                	if(controller_sortEmployee(listaEmpleados))
-    				{
-    					input_limpiarPantalla();
-                    	printf("Empleados ordenados con exito! \n");
-                    	input_systemPause();
-    				}
-    				else
-    				{
-    					input_limpiarPantalla();
-                    	printf("Error al ordenar la lista! \n");
-                    	input_systemPause();
-    				}
+                	(controller_sortEmployee(listaEmpleados));
             	}
             	else
             	{
@@ -259,32 +263,27 @@ int main()
             	}
             	break;
             case 10:
-            	if(guardoEmpleadosTexto == 0 && guardoEmpleadosBinario == 0)
-            	{
-            		input_limpiarPantalla();
-            		if(input_confirmacion("No se guardo en ninguna lista, ¿Desea salir igual? [si/no]: \n",
-            				"ERROR. No se guardo en ninguna lista, ¿Desea salir igual? [si/no]: \n") == 0)
-            		{
-            			option = 11;
-            		}
-            	}
-            	else if(guardoEmpleadosTexto == 0)
+            	if(guardoEmpleadosTexto == 0 && guardoEmpleadosBinario == 0 && modificacionListaEmpleados == 1)
             	{
                 	input_limpiarPantalla();
-                	if(input_confirmacion("No se guardo en la lista de TEXTO, ¿Desea salir igual? [si/no]: \n",
-                			"ERROR. No se guardo en la lista de TEXTO, ¿Desea salir igual? [si/no]: \n") == 0)
+                	if(input_confirmacion("No se guardo en ninguna lista! ¿Desea salir igual? [si/no]: ",
+                			"ERROR. No se guardo en ninguna lista! ¿Desea salir igual? [si/no]: ") != -1)
                 	{
                     	option = 11;
+                    	employee_setUltimoId(ultimoId);
                 	}
             	}
-            	else if(guardoEmpleadosBinario == 0)
+            	else if(guardoEmpleadosTexto == 0 && modificacionListaEmpleados == 1)
             	{
                 	input_limpiarPantalla();
-                	if(input_confirmacion("No se guardo en la lista de BINARIO, ¿Desea salir igual? [si/no]: \n",
-                			"ERROR. No se guardo en la lista de BINARIO, ¿Desea salir igual? [si/no]: \n") == 0)
-                	{
-                    	option = 11;
-                	}
+                	printf("No se guardo en la lista de TEXTO!");
+                	input_systemPause();
+            	}
+            	else if(guardoEmpleadosBinario == 0 && modificacionListaEmpleados == 1)
+            	{
+                	input_limpiarPantalla();
+                	printf("No se guardo en la lista de BINARIO!");
+                	input_systemPause();
             	}
             	else
             	{

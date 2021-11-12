@@ -7,7 +7,7 @@
  *
  * \param path char*
  * \param pArrayListEmployee LinkedList*
- * \return int
+ * \return int Si sale bien retorna [1] caso contrario [0]
  *
  */
 int controller_loadFromText(char* path , LinkedList* pArrayListEmployee)
@@ -28,7 +28,7 @@ int controller_loadFromText(char* path , LinkedList* pArrayListEmployee)
  *
  * \param path char*
  * \param pArrayListEmployee LinkedList*
- * \return int
+ * \return int Si sale bien retorna [1] caso contrario [0]
  *
  */
 int controller_loadFromBinary(char* path , LinkedList* pArrayListEmployee)
@@ -49,7 +49,7 @@ int controller_loadFromBinary(char* path , LinkedList* pArrayListEmployee)
  *
  * \param path char*
  * \param pArrayListEmployee LinkedList*
- * \return int
+ * \return int Si sale bien retorna [1] caso contrario [0]
  *
  */
 int controller_addEmployee(LinkedList* pArrayListEmployee)
@@ -60,7 +60,6 @@ int controller_addEmployee(LinkedList* pArrayListEmployee)
 
 	if(pArrayListEmployee != NULL && pEmployeeAux != NULL)
 	{
-		retorno = 1;
 
 		if(employee_requestNewEmployee(pEmployeeAux, &id) != -1)
 		{
@@ -74,6 +73,7 @@ int controller_addEmployee(LinkedList* pArrayListEmployee)
 				input_limpiarPantalla();
 				printf("Empleado agregado con exito! \n");
 				input_systemPause();
+				retorno = 1;
 			}
 			else
 			{
@@ -91,7 +91,7 @@ int controller_addEmployee(LinkedList* pArrayListEmployee)
  *
  * \param path char*
  * \param pArrayListEmployee LinkedList*
- * \return int
+ * \return int Si sale bien retorna [1] caso contrario [0]
  *
  */
 int controller_editEmployee(LinkedList* pArrayListEmployee)
@@ -152,6 +152,7 @@ int controller_editEmployee(LinkedList* pArrayListEmployee)
 									input_limpiarPantalla();
 									printf("Empleado modificado! \n");
 									input_systemPause();
+									retorno = 1;
 								}
 
 								break;
@@ -166,6 +167,7 @@ int controller_editEmployee(LinkedList* pArrayListEmployee)
 									input_limpiarPantalla();
 									printf("Empleado modificado! \n");
 									input_systemPause();
+									retorno = 1;
 								}
 								break;
 							case 3:
@@ -178,6 +180,7 @@ int controller_editEmployee(LinkedList* pArrayListEmployee)
 									*pEmployee = employeeAux;
 									input_limpiarPantalla();
 									printf("Empleado modificado! \n");
+									retorno = 1;
 									input_systemPause();
 								}
 								break;
@@ -210,7 +213,7 @@ int controller_editEmployee(LinkedList* pArrayListEmployee)
  *
  * \param path char*
  * \param pArrayListEmployee LinkedList*
- * \return int
+ * \return int Si sale bien retorna [1] caso contrario [0]
  *
  */
 int controller_removeEmployee(LinkedList* pArrayListEmployee)
@@ -241,7 +244,7 @@ int controller_removeEmployee(LinkedList* pArrayListEmployee)
 					employee_printEmployee(*pEmployee);
 					if(input_confirmacion("Confirmar baja de empleado [si/no]: ", "ERROR. Confirmar baja de empleado [si/no]: ") != -1)
 					{
-						retorno = -1;
+						retorno = 1;
 						ll_remove(pArrayListEmployee, indice);
 						input_limpiarPantalla();
 						printf("Empleado eliminado con exito! \n");
@@ -276,7 +279,7 @@ int controller_removeEmployee(LinkedList* pArrayListEmployee)
  *
  * \param path char*
  * \param pArrayListEmployee LinkedList*
- * \return int
+ * \return int Si sale bien retorna [1] caso contrario [0]
  *
  */
 int controller_ListEmployee(LinkedList* pArrayListEmployee)
@@ -305,20 +308,103 @@ int controller_ListEmployee(LinkedList* pArrayListEmployee)
  *
  * \param path char*
  * \param pArrayListEmployee LinkedList*
- * \return int
+ * \return int Si sale bien retorna [1] caso contrario [0]
  *
  */
 int controller_sortEmployee(LinkedList* pArrayListEmployee)
 {
 	int retorno = 0;
+	int opcion;
+	int resultado = 0;
 
 	if(pArrayListEmployee != NULL)
 	{
+
 		input_limpiarPantalla();
-		printf("Cargando... \n");
-		if(ll_sort(pArrayListEmployee, employee_sortByName, 1) == 0)
+		input_getNumero(&opcion,	"1. Ordernar por Nombre A-Z \n"
+									"2. Ordenar por Nombre Z-A \n"
+									"3. Ordenar por Salario 0-9 \n"
+									"4. Ordenar por Salario 9-0 \n"
+									"5. Ordenar por Horas Trabajadas 0-9 \n"
+									"6. Ordenar por Horas Trabajadas 9-0 \n"
+									"7. Atras \n"
+									"- - - - - - - - - - - - - - - - - \n"
+									"Ingresar opcion: ",
+									"1. Ordernar por Nombre A-Z \n"
+									"2. Ordenar por Nombre Z-A \n"
+									"3. Ordenar por Salario 0-9 \n"
+									"4. Ordenar por Salario 9-0 \n"
+									"5. Ordenar por Horas Trabajadas 0-9 \n"
+									"6. Ordenar por Horas Trabajadas 9-0 \n"
+									"7. Atras \n"
+									"- - - - - - - - - - - - - - - - - \n"
+									"ERROR. Ingresar opcion: ",1, 7);
+		switch(opcion)
 		{
-			retorno = 1;
+			case 1:
+				input_limpiarPantalla();
+				printf("Cargando... \n");
+				if(ll_sort(pArrayListEmployee, employee_sortByName, 1) == 0)
+				{
+					resultado = 1;
+				}
+				break;
+			case 2:
+				input_limpiarPantalla();
+				printf("Cargando... \n");
+				if(ll_sort(pArrayListEmployee, employee_sortByName, 0) == 0)
+				{
+					resultado = 1;
+				}
+				break;
+			case 3:
+				input_limpiarPantalla();
+				printf("Cargando... \n");
+				if(ll_sort(pArrayListEmployee, employee_sortBySalary, 1) == 0)
+				{
+					resultado = 1;
+				}
+				break;
+			case 4:
+				input_limpiarPantalla();
+				printf("Cargando... \n");
+				if(ll_sort(pArrayListEmployee, employee_sortBySalary, 0) == 0)
+				{
+					resultado = 1;
+				}
+				break;
+			case 5:
+				input_limpiarPantalla();
+				printf("Cargando... \n");
+				if(ll_sort(pArrayListEmployee, employee_sortByWorkedHours, 1) == 0)
+				{
+					resultado = 1;
+				}
+				break;
+			case 6:
+				input_limpiarPantalla();
+				printf("Cargando... \n");
+				if(ll_sort(pArrayListEmployee, employee_sortByWorkedHours, 0) == 0)
+				{
+					resultado = 1;
+				}
+				break;
+			case 7:
+				input_limpiarPantalla();
+				break;
+		}
+
+		if(resultado == 1)
+		{
+			input_limpiarPantalla();
+			printf("Empleados ordenados con exito! \n");
+			input_systemPause();
+		}
+		else
+		{
+			input_limpiarPantalla();
+			printf("Error al ordenar la lista! \n");
+			input_systemPause();
 		}
 
 	}
@@ -329,7 +415,7 @@ int controller_sortEmployee(LinkedList* pArrayListEmployee)
  *
  * \param path char*
  * \param pArrayListEmployee LinkedList*
- * \return int
+ * \return int Si sale bien retorna [1] caso contrario [0]
  *
  */
 int controller_saveAsText(char* path , LinkedList* pArrayListEmployee)
@@ -350,7 +436,7 @@ int controller_saveAsText(char* path , LinkedList* pArrayListEmployee)
  *
  * \param path char*
  * \param pArrayListEmployee LinkedList*
- * \return int
+ * \return int Si sale bien retorna [1] caso contrario [0]
  *
  */
 int controller_saveAsBinary(char* path , LinkedList* pArrayListEmployee)

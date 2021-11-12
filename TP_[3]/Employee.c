@@ -184,7 +184,7 @@ int employee_sortByName(void* employee1,void* employee2)
 
 int employee_sortBySalary(void* pEmployee1, void* pEmployee2)
 {
-	int retorno;
+	int retorno = 0;
 	Employee* pEmployeeAux1 = NULL;
 	Employee* pEmployeeAux2 = NULL;
 	pEmployeeAux1 = (Employee*)pEmployee1;
@@ -211,6 +211,35 @@ int employee_sortBySalary(void* pEmployee1, void* pEmployee2)
 	return retorno;
 }
 
+int employee_sortByWorkedHours(void* pEmployee1, void* pEmployee2)
+{
+	int retorno = 0;
+	Employee* pEmployeeAux1 = NULL;
+	Employee* pEmployeeAux2 = NULL;
+	pEmployeeAux1 = (Employee*)pEmployee1;
+	pEmployeeAux2 = (Employee*)pEmployee2;
+	int horas1;
+	int horas2;
+
+	if(pEmployeeAux1 != NULL && pEmployeeAux2 != NULL)
+	{
+
+		if(employee_getHorasTrabajadas(pEmployeeAux1, &horas1) == 0 && employee_getHorasTrabajadas(pEmployeeAux2, &horas2) == 0)
+		{
+			if(horas1 > horas2)
+			{
+				retorno = 1;
+			}
+			else if(horas1 < horas2)
+			{
+				retorno = -1;
+			}
+		}
+	}
+
+	return retorno;
+}
+
 int employee_requestNewEmployee(Employee* pEmployee, int* id)
 {
 	int retorno = -1;
@@ -218,8 +247,6 @@ int employee_requestNewEmployee(Employee* pEmployee, int* id)
 	if(pEmployee != NULL)
 	{
 		retorno = 0;
-		input_limpiarPantalla();
-
 		// ID
 		*id = employee_getUltimoId() + 1;
 		pEmployee->id = *id;
@@ -290,6 +317,7 @@ int employee_setUltimoId(int ultimoId)
 	if(pFile != NULL)
 	{
 		fprintf(pFile, "%d \n", ultimoId);
+		retorno = 0;
 	}
 	fclose(pFile);
 
