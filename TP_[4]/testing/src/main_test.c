@@ -17,7 +17,7 @@
 */
 
 #include "../../testing/utest.h"
-#include <stdio.h>
+#include <stdio_ext.h>
 #include <stdlib.h>
 //**********LISTAS***********
 #include "../inc/newTest.h"
@@ -46,7 +46,7 @@
 
 void startTesting(int testGroup)
 {
-
+	setbuf(stdout,NULL);
 
     switch(testGroup)
     {

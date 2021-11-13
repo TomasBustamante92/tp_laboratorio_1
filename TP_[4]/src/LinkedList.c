@@ -104,13 +104,43 @@ Node* test_getNode(LinkedList* this, int nodeIndex)
                         ( 0) Si funciono correctamente
  *
  */
-static int addNode(LinkedList* this, int nodeIndex,void* pElement)
+static int addNode(LinkedList* this, int nodeIndex, void* pElement)
 {
     int returnAux = -1;
+	int len = ll_len(this);
+	Node* node = NULL;
+	Node* nodeAux = NULL;
+	node = malloc(sizeof(Node));
 
-    if(this != NULL && pElement != NULL)
+
+    if(this != NULL && nodeIndex >= 0 && nodeIndex <= len && node != NULL)
     {
+		this->size++;
 
+		if(nodeIndex == 0)		// PRIMERO
+		{
+			nodeAux = getNode(this, 0);
+			this->pFirstNode = node;
+	    	node->pElement = pElement;
+	    	node->pNextNode = nodeAux;
+		}
+		else if(this->size == len)		// ULTIMO
+		{
+			nodeAux = getNode(this, nodeIndex-1);
+			nodeAux->pNextNode = node;
+			node->pElement = pElement;
+			node->pNextNode = NULL;
+		}
+		else		// MEDIO
+		{
+			nodeAux = getNode(this, nodeIndex -1);
+			nodeAux->pNextNode = node;
+			node->pElement = pElement;
+			nodeAux = getNode(this, nodeIndex +1);
+			node->pNextNode = nodeAux;
+		}
+
+    	returnAux = 0;
     }
     return returnAux;
 }
@@ -141,6 +171,10 @@ int ll_add(LinkedList* this, void* pElement)
 {
     int returnAux = -1;
 
+    if(this != NULL)
+    {
+    	returnAux = addNode(this, this->size, pElement);
+    }
     return returnAux;
 }
 
