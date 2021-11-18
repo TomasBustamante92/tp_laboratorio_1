@@ -99,7 +99,8 @@ static int addNode(LinkedList* this, int nodeIndex, void* pElement)
     int returnAux = -1;
 	int len = ll_len(this);
 	Node* node = NULL;
-	Node* nodeAux = NULL;
+	Node* nodeAnterior = NULL;
+	Node* nodeSiguiente = NULL;
 	node = malloc(sizeof(Node));
 
 
@@ -109,25 +110,25 @@ static int addNode(LinkedList* this, int nodeIndex, void* pElement)
 
 		if(nodeIndex == 0)		// PRIMERO
 		{
-			nodeAux = getNode(this, 0);
+			nodeSiguiente = getNode(this, 0);
 			this->pFirstNode = node;
 	    	node->pElement = pElement;
-	    	node->pNextNode = nodeAux;
+	    	node->pNextNode = nodeSiguiente;
 		}
 		else if(this->size == len)		// ULTIMO
 		{
-			nodeAux = getNode(this, nodeIndex-1);
-			nodeAux->pNextNode = node;
+			nodeAnterior = getNode(this, nodeIndex-1);
+			nodeAnterior->pNextNode = node;
 			node->pElement = pElement;
 			node->pNextNode = NULL;
 		}
 		else		// MEDIO
 		{
-			nodeAux = getNode(this, nodeIndex -1);
-			nodeAux->pNextNode = node;
+			nodeAnterior = getNode(this, nodeIndex -1);
+			nodeSiguiente = getNode(this, nodeIndex +1);
+			nodeAnterior->pNextNode = node;
 			node->pElement = pElement;
-			nodeAux = getNode(this, nodeIndex +1);
-			node->pNextNode = nodeAux;
+			node->pNextNode = nodeSiguiente;
 		}
 
     	returnAux = 0;
@@ -272,7 +273,7 @@ int ll_clear(LinkedList* this)
 
     if(this != NULL && len > -1)
     {
-    	for(i=0 ; i<len ; i++)
+    	for(i=len ; i>-1 ; i--)
     	{
     		ll_remove(this, i);
     	}
