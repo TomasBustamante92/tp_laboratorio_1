@@ -552,7 +552,6 @@ int ll_sort(LinkedList* this, int (*pFunc)(void* ,void*), int order)
 {
     int returnAux =-1;
    	int i;
-   	int j;
 	int flagSwap;
 	void* pAux;
 	void* pSwaper1;
@@ -563,32 +562,6 @@ int ll_sort(LinkedList* this, int (*pFunc)(void* ,void*), int order)
 
     if(this != NULL && (order == 1 || order == 0) && len > 0 && pFunc != NULL)
     {
-
-    	for(i=0 ; i<len-1; i++)
-    	{
-    		for(j=i+1 ; j<len ; j++)
-    		{
-    			pSwaper1 = ll_get(this, i);
-    			pSwaper2 = ll_get(this, j);
-
-    			criterio = pFunc(pSwaper1,pSwaper2);
-
-    			if(order == 0 && criterio == -1 )
-    			{
-    				pAux = pSwaper1;
-    				ll_set(this, i, pSwaper2);
-    				ll_set(this, j, pAux);
-    			}
-    			else if(order == 1 && criterio == 1 )
-    			{
-    				pAux = pSwaper1;
-    				ll_set(this, i, pSwaper2);
-    				ll_set(this, j, pAux);
-    			}
-    		}
-    	}
-
-/*
 		do{
 			flagSwap = 0;
 
@@ -604,18 +577,20 @@ int ll_sort(LinkedList* this, int (*pFunc)(void* ,void*), int order)
 					pAux = pSwaper1;
 					ll_set(this, i, pSwaper2);
 					ll_set(this, i+1, pAux);
+					flagSwap = 1;
 				}
 				else if(order == 1 && criterio == 1 )
 				{
 					pAux = pSwaper1;
 					ll_set(this, i, pSwaper2);
 					ll_set(this, i+1, pAux);
+					flagSwap = 1;
 				}
 			}
 			nuevoLimite--;
 
 		}while(flagSwap);
-*/
+
 		returnAux = 0;
     }
     return returnAux;
